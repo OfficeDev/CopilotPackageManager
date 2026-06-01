@@ -14,9 +14,9 @@ A .NET 9 ASP.NET Core MVC web application that provides an interactive UI for IT
 | **List Packages** | Retrieve all Copilot packages with automatic pagination. |
 | **Filter** | Filter by supported host, element type, or last modified date (one filter at a time — API limitation). |
 | **View Details** | Inspect package metadata: title, description, publisher, supported hosts, and element types. |
-| **Block / Unblock** | Block a package to prevent usage, or unblock it to restore availability. A dedicated Unblock page is available for packages that are no longer visible in the list after blocking. |
+| **Block / Unblock** | Block a package to prevent usage, or unblock it to restore availability. A dedicated Unblock page is available for packages that may no longer be visible in the list after blocking. |
 | **Reassign** | Reassign ownership of shared Copilot Studio agents to a different user. |
-| **Update Access** | Modify allowed and acquired users/groups for a package through a user-friendly form (no raw JSON required). |
+| **Update Access** | Modify allowed and acquired users/groups for a package through a user-friendly form. |
 
 ---
 
@@ -28,7 +28,6 @@ A .NET 9 ASP.NET Core MVC web application that provides an interactive UI for IT
   - An **Application (client) ID**
   - A **Directory (tenant) ID**
   - Delegated API permission: **`CopilotPackages.Read.All`** (used for listing and reading packages)
-  - Depending on write operations (block, unblock, reassign, update access), additional permissions such as **`CopilotPackages.ReadWrite.All`** may be required — refer to the [API documentation](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/api/admin-settings/package/overview) for the latest permission requirements
   - For write operations (block, unblock, reassign, update access), additional permissions such as **`CopilotPackages.ReadWrite.All`** may be required — refer to the [API documentation](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/api/admin-settings/package/overview) for the latest permission requirements
   - Redirect URI set to **`http://localhost`** (required for the interactive browser sign-in flow)
   - The signed-in user must have a **Microsoft 365 admin role** with access to Copilot package management
@@ -59,10 +58,9 @@ Open `PackageManagementAPI_MVC/appsettings.json` and replace the placeholders wi
 1. **Clone** the repository:
    ```bash
    git clone https://github.com/OfficeDev/CopilotPackageManager.git
-   cd CopilotPackageManager
    ```
 
-2. **Configure** – Update `PackageManagementAPI_MVC/appsettings.json` with your `CLIENT_ID` and `TENANT_ID`.
+2. **Configure** – Update `appsettings.json` with your `CLIENT_ID` and `TENANT_ID`.
 
 3. **Run** the application:
    ```bash
@@ -113,7 +111,7 @@ PackageManagementAPI_MVC/
 1. At startup, `Program.cs` loads configuration from `appsettings.json` and creates an authenticated `GraphServiceClient` using interactive browser sign-in.
 2. The `PackageService` uses the Graph client and the configured base URL to call the Graph Beta package management endpoints via raw HTTP requests.
 3. The `PackagesController` exposes AJAX endpoints that the `ListView.cshtml` UI calls via jQuery `$.post` requests.
-4. All user inputs (package IDs, user IDs, dates, access entries) are validated both client-side and server-side using `ValidationHelper` before any API call is made.
+4. All user inputs (package IDs, user IDs, dates, access entries) are validated using `ValidationHelper` before any API call is made.
 
 ---
 
@@ -136,7 +134,6 @@ For full details, see the [Package Management API overview](https://learn.micros
 ## Known Limitations
 
 - The Graph Beta package management API supports **only one `$filter` per request**. The UI enforces mutual exclusion among filter options.
-- The API supports **only one `$filter` per request**. The UI enforces mutual exclusion among filter options.
 - **Reassign** is restricted to shared agents created in Copilot Studio.
 - **Update Access** sends a success response from the API, but actual propagation may vary depending on the package type.
 - These APIs are in **preview** and behavior may change.
