@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.21.0" />
+    <PackageReference Include="Microsoft.Graph.Beta" Version="5.98.0-preview" />
+    <PackageReference Include="Microsoft.Kiota.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Kiota.Authentication.Azure" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Form" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Multipart" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Kiota.Serialization.Text" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>

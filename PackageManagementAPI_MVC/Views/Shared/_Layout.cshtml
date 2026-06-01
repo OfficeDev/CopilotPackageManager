@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Copilot Package Management</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PackageManagementAPI_MVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="navbar navbar-dark px-4">
+        <a class="navbar-brand fw-semibold d-flex align-items-center gap-2" asp-controller="Packages" asp-action="Index">
+            <img src="~/images/copilot-color.png" alt="Logo" style="height:32px; border-radius:4px;" />
+            Copilot Package Manager
+        </a>
+        <div class="d-flex align-items-center gap-3">
+            <a class="nav-link-top" asp-controller="Packages" asp-action="ListView">Packages</a>
+            <a class="nav-link-top" asp-controller="Packages" asp-action="Unblock">Unblock</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
