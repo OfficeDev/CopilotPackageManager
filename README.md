@@ -113,6 +113,14 @@ PackageManagementAPI_MVC/
 3. The `PackagesController` exposes AJAX endpoints that the `ListView.cshtml` UI calls via jQuery `$.post` requests.
 4. All user inputs (package IDs, user IDs, dates, access entries) are validated using `ValidationHelper` before any API call is made.
 
+### Application Walkthrough
+
+
+
+https://github.com/user-attachments/assets/76321c93-d29c-4aa8-88e7-57746071b491
+
+This video demonstrates the end-to-end functionality of the application, including package retrieval, detail view, management actions, and filtering capabilities.
+
 ---
 
 ## API Limitations
